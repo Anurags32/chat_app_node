@@ -78,5 +78,16 @@ export const logout = async (req,res)=>{
     res.status(500).json({massage:"Internal server error"})
   }
 };
-export const updateProfile = async (req,res)=>{};
+export const updateProfile = async (req,res)=>{
+  try {
+    const {profilePic}=req.body;
+    const userId = req.user._id;
+    if(!profilePic){
+      return res.status(400).json({massage:"Profile pic is requried"});
+    }
+
+  } catch (error) {
+    
+  }
+};
 
