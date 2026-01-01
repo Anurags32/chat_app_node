@@ -86,8 +86,22 @@ export const updateProfile = async (req,res)=>{
       return res.status(400).json({massage:"Profile pic is requried"});
     }
 
+    const uploadResponse = await cloudinary.uploader.upload(profilePic);
+    const updateUser = await User.findByIdAndUpdate(
+      userId,
+      { profile: uploadResponse.secure_url },
+      { new: true }
+    );
+    res.status(200).json({
+      _id: updateUser._id,
+      fullName: updateUser.fullName,
+      email: updateUser.email,
+      profile: updateUser.profile,
+    });
+
   } catch (error) {
-    
+    console.log("Error in update profile",error.massage);
+    res.status(500).json({massage:"Internal Server Error"});
   }
 };
 
