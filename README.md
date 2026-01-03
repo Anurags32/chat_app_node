@@ -9,7 +9,7 @@ A real-time chat application built with Node.js, Express, Socket.IO, MongoDB, an
 - **Online Users**: See which users are currently online.
 - **Secure**: JWT-based authentication with HTTP-only cookies.
 - **Image Uploads**: Profile pictures and message images stored on Cloudinary.
-- **Responsive**: CORS configured for frontend integration (e.g., React app on localhost:3000).
+- **Responsive**: CORS configured for frontend integration (e.g., Flutter app on localhost:3000).
 
 ## Tech Stack
 
