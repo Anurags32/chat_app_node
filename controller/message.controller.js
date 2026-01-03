@@ -1,5 +1,6 @@
 import User from "../model/user.model.js";
 import Message from "../model/message.model.js";
+import {io,getRecevierSoketId} from "../lib/soket.js";
 import cloudinary from "../lib/cloudinary.js";
 
 export const getUsersForSidebar = async(req,res)=> {
@@ -45,6 +46,10 @@ export const sentMessage = async (req,res)=>{
         });
         await newMessage.save();
         // implement here soketio
+        const resiverSoketId = getRecevierSoketId(resiverId);
+        if(resiverSoketId){
+            io.to(resiverSoketId).emit("newMessage",newMessage);
+        }
         res.status(200).json(newMessage);
     } catch (error) {
         res.status(500).json({error:"Internal Server Error"});
